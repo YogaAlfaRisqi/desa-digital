@@ -2,12 +2,17 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Surat\SuratPengajuans\SuratPengajuanResource;
+use App\Filament\Resources\Surat\SuratTemplates\SuratTemplateResource;
+use App\Filament\Resources\Surat\SuratTerbits\SuratTerbitResource;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Faker\Core\Color as CoreColor;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -31,10 +36,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Desa Digital')
+            
             ->colors([
                 // 'primary' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
+            
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
@@ -61,6 +68,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make()
             ])
-            ;
+            
+        ;
     }
 }
